@@ -1,0 +1,264 @@
+@font-face {
+	font-family: "parry_hotterregular";
+	src: url(../chinese-face/AU.eot);
+	src: url(../chinese-face/AU.eot?#iefix) format("embedded-opentype"),
+		url(../chinese-face/AU.woff) format("woff"), url(chinese-face/AU.ttf)
+		format("truetype"), url(../chinese-face/AU.svg#parry_hotterregular)
+		format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+input:invalid+span::after {
+	content: "";
+	padding-right: 15px;
+}
+
+input:valid+span::after {
+	content: "√";
+	padding-right: 15px;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.clear {
+	clear: both;
+	
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-image: url(../image/bbb.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#login-form h1 {
+	font-size: 2em;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 2em;
+	position: relative;
+	top: 20px;
+	font-family: "parry_hotterregular";
+}
+
+.top-login {
+	width: 130px;
+	height: 130px;
+	display: block;
+	transform: rotate(45deg) translate3d(0, 0, 0);
+	transform: rotate(45deg) translate3d(0, 0, 0);
+	transform: rotate(45deg) translate3d(0, 0, 0);
+	transform: rotate(45deg) translate3d(0, 0, 0);
+	transform: rotate(45deg) translate3d(0, 0, 0);
+	margin: 0 auto 4em;
+	background: white;
+	position: relative;
+	top: 40px;
+}
+
+.top-login span {
+	border: 2px solid #F36;
+	width: 105px;
+	height: 105px;
+	display: block;
+	margin: 0px auto;
+	position: absolute;
+	top: 11px;
+	left: 11px;
+}
+
+.top-login span img {
+	transform: rotate(-45deg) translate3d(0, 0, 0);
+	transform: rotate(-45deg) translate3d(0, 0, 0);
+	transform: rotate(-45deg) translate3d(0, 0, 0);
+	transform: rotate(-45deg) translate3d(0, 0, 0);
+	transform: rotate(-45deg) translate3d(0, 0, 0);
+	margin: 20px 0 0 20px;
+}
+
+.login-top {
+	width: 460px;
+	display: block;
+	margin: 0 auto;
+}
+
+.login-ic {
+	background-color: #5174A6;
+	margin-bottom: 1.5em;
+	padding: 5px;
+	position: relative;
+	top: 10px;
+	opacity:0.5;
+	height: 40px;
+	
+}
+
+.login-ic i {
+	background-image: url(../image/m.png);
+	background-repeat: no-repeat 6px 6px;
+	background-size: cover;
+	width: 38px;
+	height: 38px;
+	float: left;
+	display: inline-block;
+}
+
+.login-ic i.icon {
+	background-image: url(../image/l.png);
+	background-repeat: no-repeat 6px 6px;
+	background-size: cover;
+	display: inline-block;
+}
+
+.login-ic input[type="text"], .login-ic input[type="password"] {
+	float: left;
+	background: none;
+	outline: none;
+	font-size: 15px;
+	font-weight: 400;
+	color: white;
+	padding: 10px 16px;
+	border: none;
+	border-left: 1px solid #fff;
+	width: 82%;
+	display: inline-block;
+	margin-left: 7px;
+}
+
+.log-bwn {
+	text-align: center;
+	position: relative;
+	top: 10px;
+}
+
+.log-bwn input[type="submit"] {
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+	padding: 13px 0;
+	background: #ff3366;
+	display: inline-block;
+	width: 100%;
+	outline: none;
+	border: 2px solid #ff3366;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.log-bwn input[type="submit"]:hover {
+	transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	border: 2px solid #fff;
+}
+
+p.copy {
+	color: #fff;
+	font-size: 1em;
+	text-align: center;
+	margin-top: 3em;
+}
+
+/*自适应宽度*/
+@media ( max-width :600px) {
+	.login-top {
+		width: 425px;
+	}
+	.login-ic input[type="text"], .login-ic input[type="password"] {
+		width: 79%;
+	}
+}
+/*自适应宽度*/
+@media ( max-width :450px) {
+	.login-top {
+		width: 360px;
+	}
+	.login-ic input[type="text"], .login-ic input[type="password"] {
+		width: 76%;
+	}
+	.top-login {
+		width: 90px;
+		height: 90px;
+		margin: 0 auto 3em;
+	}
+	.top-login span img {
+		margin: 5px 0 0 5px;
+	}
+	.top-login span {
+		width: 75px;
+		height: 75px;
+		top: 5px;
+		left: 5px;
+	}
+	#login-form h1 {
+		margin-bottom: 1em;
+		font-size: 1.7em;
+	}
+	.login-ic {
+		margin-bottom: 1em;
+		padding: 3px;
+	}
+	.log-bwn input[type="submit"] {
+		padding: 10px 0;
+	}
+}
+/*自适应宽度*/
+@media ( max-width :384px) {
+	.login-top {
+		width: 340px;
+	}
+	.login-ic input[type="text"], .login-ic input[type="password"] {
+		width: 50%;
+	}
+}
+
+.forget {
+	position: relative;
+	top: 30px;
+	left: 380px;
+}
+
+.forget a {
+	color: white;
+	text-decoration: none;
+}
+
+.forget a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+.forget a:active {
+	color: blue;
+}
+
+.inputTip {
+	position: relative;
+	left: 425px;
+	bottom: 38px;
+	color: #00FF7F;
+	font-size: 2em;
+}
+/*自适应宽度*/
+@media ( max-width :320px) {
+	.login-top {
+		width: 280px;
+	}
+	.login-ic input[type="text"], .login-ic input[type="password"] {
+		width: 70%;
+	}
+}
+
+input::-webkit-input-placeholder { 
+    color: white; 
+    text-overflow: ellipsis; 
+}

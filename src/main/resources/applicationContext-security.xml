@@ -1,0 +1,70 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 如自定义登录页面必须将之权限需求设为空，否则将出现死循环 -->
+	<http pattern="/index.jsp" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/js/**" security="none" />
+	<http pattern="/image/**" security="none" />
+	<http pattern="/plugins/**" security="none" />
+	<http pattern="/chinese-face/**" security="none" />
+	<http pattern="/iconfont/**" security="none" />
+	<http pattern="/toLogin" security="none" />
+	<http pattern="/toFindPassword" security="none" />
+	<http pattern="/findPassword" security="none" />
+	
+	<!-- 1.access-denied-page:权限不足时跳转页面 ( ref属性可以设置跳转action ) 2.use-expressions="true":开启表达式(推荐) 
+		PS:开启后非JAVA为文件写法 为:hasRole('ROLE_USER') -->
+	<http use-expressions="true" auto-config="true">
+
+		<!-- 过滤地址 pattern:路径 access:权限 -->
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+
+		<!-- 登录配置 1.login-processing-url:登录form中action的地址(默认 为/j_spring_security_check) 
+			2.username-parameter:登录form中用户名的username(默认为/j_username) 3.password-parameter:登录form中用户名的password(默认为/j_password) 
+			4.login-page:登录页(将覆盖默认登录页) 5.default-target-url:默认登录后跳转的页面(如果登录前没有指定跳转页 面将生效) 
+			6.authentication-failure-url:错误页 7.always-use-default-target="true":登录后强制跳转到5所指定的页面 -->
+		<form-login login-processing-url="/login"
+			username-parameter="user.username" password-parameter="user.password"
+			login-page="/toLogin" default-target-url="/login"
+			authentication-failure-url="/error.jsp?error=true"
+			always-use-default-target="true" />
+		<csrf disabled="true" />
+
+		<!-- 注销配置 1.logout-success-url:注销后跳转页面 -->
+		<logout logout-success-url="/toLogout?logout=true" />
+	</http>
+
+	<!-- 使用jsr250注解保护方法 (例:com.exp.service.UserService.findAll) <global-method-security 
+		jsr250-annotations="enabled" /> -->
+
+	<authentication-manager>
+		<!-- 手动配置权限列表。 PS: 1.实体bean必须实现 UserDetails接口，否则无法转换成正确类型 2.myUserDetailService该bean必须实现UserDetailsService接口并写好对应 
+			方法返回UserDetails类型 -->
+		<authentication-provider user-service-ref='myUserDetailService' />
+	</authentication-manager>
+	
+	<!-- 配置事务管理器 -->
+    <beans:bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <beans:property name="sessionFactory" ref="sessionFactory"></beans:property>
+    </beans:bean>
+    
+    <!-- 开启使用事务的注解，在方法或类上增加 @Transactional 即可-->
+    <tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- <beans:bean id="requestDataValueProcessor" class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor" 
+		/> -->
+</beans:beans>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext*.xml</param-value>
+	</context-param>
+
+	<!-- 控制Session的开关 -->
+	<filter>
+		<filter-name>openSession</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+
+	<!-- Spring security Filter(注意配置文件的Filter的位置，否则SpringSecurityUtils.getCurrentUser()出现空指针异常。) 
+		在web.xml文件中加入Filter声明: 这个Filter会拦截所有的URL请求，并且对这些URL请求进行Spring Security的验证 
+		注意： 1、springSecurityFilterChain这个名称是由命名空间默认创建的用于处理web安全的一个内部的bean的id。所以在Spring配置文件中，不应该再使用这个id作为你的bean。 
+		2、登录action：/spring_security_login 3、 登出action：j_spring_security_logout （这两个action是springSecurity自带的，直接用就可以了） 
+		4、 Filter的配置，在项目中，跟struts2一起使用，filter的前后顺序有关系。Spring secutiry要放在struts2的前面，否则系统找不到security的action 
+		5、 怎么获取用户信息：可以参考springside中的实现org.springside.modules.security.springsecurity.SpringSecurityUtils。具体信息都在Authentication这个类中。 -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Spring的监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--Struts2 核心 filter 配置 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

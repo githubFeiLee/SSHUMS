@@ -1,0 +1,64 @@
+h2 {
+    text-align: center;
+}
+
+.buttom-menus {
+    width: 100%;
+    height: 500px;
+    margin-top: -20px;
+}
+
+.buttom-menus .content-cont {
+    width: 100%;
+    height: 450px;
+}
+
+.buttom-menus .content-cont .buttom-but {
+    width: 700px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.buttom-menus .content-cont .buttom-but .role {
+    position: relative;
+    top: 50px;
+}
+
+.buttom-menus .content-cont .buttom-but .description {
+    position: relative;
+    top: 100px;
+}
+
+.buttom-menus .content-cont .buttom-but .jur-Panel {
+    position: relative;
+    top: 180px;
+}
+
+.buttom-menus .content-cont .forget {
+    width: 500px;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    position: relative;
+    top: 200px;
+}
+
+.buttom-menus .content-cont .forget button {
+    width: 150px;
+    height: 35px;
+    padding: 5PX;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #6abc68;
+    position: relative;
+    left: 30px;
+}
+
+.role input {
+	padding: 5px;
+	height: 30PX;
+}
+
+textarea {
+	padding: 10px;
+}
